@@ -1,0 +1,23 @@
+This template expects to run with mysql because it uses the query_reviewer plugin.
+
+To run:
+
+$ rails myproject -d mysql -m firsthand.rb
+
+Then give it a whirl:
+
+$ cd myproject
+$ rake db:create
+$ script/generate scaffold post title:string body:text
+$ rake db:migrate
+$ script/server
+
+Visit:
+
+http://localhost:3000/posts
+
+Some concepts borrowed from:
+http://github.com/ffmike/BigOldRailsTemplate
+
+
+

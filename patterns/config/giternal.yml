@@ -1,0 +1,24 @@
+asset_packager:
+  repo: git://github.com/sbecker/asset_packager.git
+  path: vendor/plugins
+custom_err_msg:
+  repo: git://github.com/pivotal/custom-err-msg.git
+  path: vendor/plugins
+exception_notification:
+  repo: git://github.com/rails/exception_notification.git
+  path: vendor/plugins
+firsthand_power_tools:
+  repo: git://github.com/firsthand/firsthand_power_tools.git
+  path: vendor/plugins  
+intercession:
+  repo: git://github.com/jbarnette/intercession.git
+  path: vendor/plugins  
+meta_tags:
+  repo: git://github.com/kpumuk/meta-tags.git
+  path: vendor/plugins
+query_reviewer:
+  repo: git://github.com/dsboulder/query_reviewer.git
+  path: vendor/plugins  
+rack-bug:
+  repo: git://github.com/brynary/rack-bug.git
+  path: vendor/plugins
