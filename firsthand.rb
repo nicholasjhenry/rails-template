@@ -49,6 +49,13 @@ initializer 'exception_notifier.rb', <<-END
 ExceptionNotifier.exception_recipients = %w(webmaster@firsthand.ca)
 END
 
+initializer 'form_errors.rb', <<-END
+ActionView::Base.field_error_proc = Proc.new do |html_tag, instance_tag|
+  klass = html_tag.match(/<label.*>/) ? "labelWithErrors" : "fieldWithErrors"
+  "<span class=\"#{klass}\">#{html_tag}</span>"
+end
+END
+
 
 # ============================================================================
 # Configuration
