@@ -10,6 +10,7 @@ init_template_path(template_path)
 gem 'compass'
 gem 'formtastic'
 gem 'haml'
+gem 'searchlogic'
 gem 'will_paginate'
 gem 'RedCloth', :lib => 'redcloth', :version => '~> 3.0.4'
 
