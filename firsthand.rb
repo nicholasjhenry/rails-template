@@ -7,10 +7,11 @@ init_template_path(template_path)
 # GEMS
 # ============================================================================
 
-gem 'RedCloth', :lib => 'redcloth', :version => '~> 3.0.4'
-gem 'haml'
 gem 'compass'
+gem 'formtastic'
+gem 'haml'
 gem 'will_paginate'
+gem 'RedCloth', :lib => 'redcloth', :version => '~> 3.0.4'
 
 # development
 gem "inaction_mailer", :lib => 'inaction_mailer/force_load', :env => 'development'
