@@ -67,6 +67,8 @@ load_pattern 'test/test_helper.rb'
 
 load_pattern 'lib/my_app.rb'
 
+load_pattern 'config/application.yml'
+
 run "cp config/database.yml config/database.yml.example"
 
 # Compass
@@ -74,15 +76,20 @@ run 'haml --rails .'
 run 'compass --rails -f blueprint . --css-dir=public/stylesheets/compiled --sass-dir=app/stylesheets'
 
 # ============================================================================
-# Git Setup
-# ============================================================================
-                         
+# Plugins
+#
 # Use Gitneral to manage external dependencies
+# ============================================================================
+
 load_pattern 'config/giternal.yml'
 
 run 'giternal update'
 run 'giternal freeze'
- 
+
+# ============================================================================
+# Git Setup
+# ============================================================================
+                         
 run "rm public/index.html"
 run "touch public/stylesheets/screen.css"
 run "touch public/stylesheets/print.css" 

@@ -23,6 +23,13 @@ module MyApp
     alias_method :inspect, :to_s
   end
 
+  def self.[](key)
+    unless @config
+      raw_config = File.read(RAILS_ROOT + "/config/application.yml")
+      @config = YAML.load(raw_config)[RAILS_ENV].symbolize_keys
+    end
+    @config[key]
+
   class << self
     attr_accessor :version, :project_name
   end
