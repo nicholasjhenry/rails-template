@@ -29,6 +29,19 @@ module MyApp
       @config = YAML.load(raw_config)[RAILS_ENV].symbolize_keys
     end
     @config[key]
+  end
+
+  def self.[]=(key, value)
+    @config[key.to_sym] = value
+  end
+  
+  def self.domain
+    [:domain]
+  end
+    
+  def self.full_url
+    "http://#{domain}"
+  end 
 
   class << self
     attr_accessor :version, :project_name
