@@ -1,5 +1,5 @@
 !!!
-%html{:xmlns =>"http://www.w3.org/1999/xhtml", "xml:lang" => "en", :lang => "en"}
+%html{:xmlns =>"http://www.w3.org/1999/xhtml", "xml:lang" => I18n.locale, :lang => I18n.locale}
   %head
 
     %meta{:name => "app_version", :content => MyApp.version}   
@@ -14,7 +14,7 @@
     /[if lt IE 8]
       = stylesheet_link_tag 'compiled/ie', :media => :all
 
-  %body{:class => body_class}
+  %body{:id => "site-id", :class => body_class}
     = render :partial => 'shared/flashes'
     = yield
     %p 
