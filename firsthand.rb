@@ -52,8 +52,6 @@ END
 # Configuration
 # ============================================================================
 
-load_pattern 'test/test_helper.rb'
-
 load_pattern 'lib/my_app.rb'
 
 load_pattern 'config/application.yml'
@@ -77,6 +75,27 @@ run 'giternal update'
 run 'cd vendor/plugins/exception_notification && git co 2-3-stable'
 
 run 'giternal freeze'
+
+# ============================================================================
+# Testing
+# ============================================================================
+
+# Don't need ./test since we are using RSpec
+#
+run 'rm -rf test doc'
+
+# Rspec will configure the test environment with Gems config, but this is
+# handled in bundler so let's backup the file...
+#
+run 'cp config/environments/test.rb tmp/test.rb.bak'
+
+generate :rspec
+
+# ...and copy it back once rspec has done it's thing
+#
+run 'mv tmp/test.rb.bak config/environments/test.rb'
+
+generate :cucumber, "--webrat --rspec"
 
 # ============================================================================
 # Git Setup
