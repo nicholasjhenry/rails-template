@@ -7,9 +7,6 @@ exception_notification:
 firsthand_power_tools:
   repo: git://github.com/firsthand/firsthand_power_tools.git
   path: vendor/plugins  
-meta_tags:
-  repo: git://github.com/kpumuk/meta-tags.git
-  path: vendor/plugins
 query_reviewer:
   repo: git://github.com/dsboulder/query_reviewer.git
   path: vendor/plugins  

@@ -2,13 +2,16 @@ source 'http://rubygems.org'
 
 gem 'rails', '2.3.8'
 gem 'erubis', '2.6.5'
+gem 'RedCloth', '~> 4.2.3'
 
 gem 'compass', '0.10.5'
 gem 'formtastic', '1.1.0'
 gem 'haml', '3.0.18'
+gem 'meta-tags', '1.2.3', :require => 'meta_tags'
+
 gem 'searchlogic', '2.4.26'
 gem 'will_paginate', '2.3.15'
-gem 'RedCloth', '~> 4.2.3'
+
 
 group :development do
   gem 'inaction_mailer', '0.6', :require => 'inaction_mailer/force_load'
