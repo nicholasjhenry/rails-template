@@ -1,0 +1,26 @@
+h1. Description
+
+TODO: add an overview of the project.
+
+h1. Setup
+
+TODO: describe how to get the project running on a local machine:
+
+<pre>
+  git clone <repo>
+  cd project
+  cp config/database.yml.example config/database.yml
+  (sudo) gem install bundler
+  (sudo) bundle install --without test cucumber production # if you are testing then just --without production
+  rake db:migrate
+</pre>
+
+TODO: how to add demo data?
+
+h1. Testing
+
+TODO: describe how to run the test scripts
+
+h1. References
+
+TODO: add any references used in the project such as documentation for third-party API's

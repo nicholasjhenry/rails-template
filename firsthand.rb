@@ -81,7 +81,9 @@ load_pattern 'config/giternal.yml'
 run 'giternal update'
 
 # Use specific branches, tags
-run 'cd vendor/plugins/exception_notification && git co 2-3-stable'
+inside('vendor/plugins/exception_notification') do
+  run "git checkout 2-3-stable"
+end
 
 run 'giternal freeze'
 
@@ -91,7 +93,7 @@ run 'giternal freeze'
 
 # Don't need ./test since we are using RSpec
 #
-run 'rm -rf test doc'
+run 'rm -rf test'
 
 # Rspec will configure the test environment with Gems config, but this is
 # handled in bundler so let's backup the file...
@@ -107,6 +109,14 @@ run 'mv tmp/test.rb.bak config/environments/test.rb'
 generate :cucumber, "--webrat --rspec"
 
 generate :email_spec
+
+# ============================================================================
+# Documentation
+# ============================================================================
+
+run 'rm -rf README doc'
+
+load_pattern 'README.textile'
 
 # ============================================================================
 # Git Setup
