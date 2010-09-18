@@ -67,8 +67,6 @@ END
 # Configuration
 # ============================================================================
 
-capify!
-
 load_pattern 'test/test_helper.rb'
 
 load_pattern 'lib/my_app.rb'
