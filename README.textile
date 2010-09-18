@@ -1,8 +1,14 @@
-This template expects to run with mysql because it uses the query_reviewer plugin.
+h1. Template Description
 
-To run:
+* Runs with mysql because it uses the query_reviewer plugin.
+* Assumes a Heroku deployment platform
+* Uses Bundler for Gem management
+
+h1. Setup/Installation
 
 $ rails myproject -d mysql -m firsthand.rb
+
+h1. Next Steps
 
 Then give it a whirl:
 
@@ -18,6 +24,3 @@ http://localhost:3000/posts
 
 Some concepts borrowed from:
 http://github.com/ffmike/BigOldRailsTemplate
-
-
-

@@ -7,26 +7,11 @@ init_template_path(template_path)
 # GEMS
 # ============================================================================
 
-gem 'compass'
-gem 'formtastic'
-gem 'haml'
-gem 'searchlogic'
-gem 'will_paginate'
-gem 'RedCloth', :lib => 'redcloth', :version => '~> 3.0.4'
+load_pattern 'Gemfile'
+load_pattern 'config/preinitializer.rb'
+load_pattern 'config/boot.rb'
 
-# development
-gem "inaction_mailer", :lib => 'inaction_mailer/force_load', :env => 'development'
-
-# testing
-gem 'mocha'
-gem 'factory_girl'
-gem 'shoulda'
-gem 'quietbacktrace'
-gem 'metric_fu'
-gem 'tarantula', :lib => 'relevance/tarantula'
-
-rake("gems:install")
-rake("gems:unpack")
+run "bundle install --without production"
 
 # ============================================================================
 # Application
@@ -48,7 +33,7 @@ end
 END
 
 initializer 'exception_notifier.rb', <<-END
-ExceptionNotifier.exception_recipients = %w(webmaster@firsthand.ca)
+ExceptionNotification::Notifier.exception_recipients = %w(webmaster@firsthand.ca)
 END
 
 initializer 'date_formats.rb', <<-END
@@ -58,7 +43,7 @@ END
 initializer 'form_errors.rb', <<-END
 ActionView::Base.field_error_proc = Proc.new do |html_tag, instance_tag|
   klass = html_tag.match(/<label.*>/) ? "labelWithErrors" : "fieldWithErrors"
-  "<span class=\"#{klass}\">#{html_tag}</span>"
+  %Q{<span class="\#{klass}">\#{html_tag}</span>}
 end
 END
 
@@ -76,7 +61,6 @@ load_pattern 'config/application.yml'
 run "cp config/database.yml config/database.yml.example"
 
 # Compass
-run 'haml --rails .'
 run 'compass --rails -f blueprint . --css-dir=public/stylesheets/compiled --sass-dir=app/stylesheets'
 
 # ============================================================================
@@ -88,6 +72,10 @@ run 'compass --rails -f blueprint . --css-dir=public/stylesheets/compiled --sass
 load_pattern 'config/giternal.yml'
 
 run 'giternal update'
+
+# Use specific branches, tags
+run 'cd vendor/plugins/exception_notification && git co 2-3-stable'
+
 run 'giternal freeze'
 
 # ============================================================================
@@ -99,13 +87,22 @@ run "touch public/stylesheets/screen.css"
 run "touch public/stylesheets/print.css" 
 
 file '.gitignore', <<-END
+.bundle
+.bundle-cache
 .DS_Store
+.sass-cache/
+.xrefresh-server.yml
 config/database.yml
 coverage/*
 db/*.sqlite3
+db/*.sqlite3.db
 doc/api
 doc/app
 log/*.log
+mkmf.log
+public/assets
+public/system
+public/uploads
 tmp/**/*
 tmp/metric_fu/*
 tmp/sent_mails/*
