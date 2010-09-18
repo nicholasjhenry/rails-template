@@ -59,7 +59,7 @@ load_pattern 'config/application.yml'
 run "cp config/database.yml config/database.yml.example"
 
 # Compass
-run 'compass --rails -f blueprint . --css-dir=public/stylesheets/compiled --sass-dir=app/stylesheets'
+run 'compass init rails --using blueprint/semantic --syntax sass'
 
 # ============================================================================
 # Plugins
