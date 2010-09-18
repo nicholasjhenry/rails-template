@@ -25,7 +25,7 @@ gem 'quietbacktrace'
 gem 'metric_fu'
 gem 'tarantula', :lib => 'relevance/tarantula'
 
-rake("gems:install", :sudo => true)
+rake("gems:install")
 rake("gems:unpack")
 
 # ============================================================================
