@@ -7,9 +7,6 @@ exception_notification:
 firsthand_power_tools:
   repo: git://github.com/firsthand/firsthand_power_tools.git
   path: vendor/plugins  
-intercession:
-  repo: git://github.com/jbarnette/intercession.git
-  path: vendor/plugins  
 meta_tags:
   repo: git://github.com/kpumuk/meta-tags.git
   path: vendor/plugins
