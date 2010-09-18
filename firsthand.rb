@@ -59,7 +59,17 @@ load_pattern 'config/application.yml'
 run "cp config/database.yml config/database.yml.example"
 
 # Compass
-run 'compass init rails --using blueprint/semantic --syntax sass'
+run 'compass init rails --using blueprint/semantic --css-dir=public/stylesheets/compiled --sass-dir=app/stylesheets --syntax sass'
+
+# RackBug
+
+require 'digest'
+
+append_file 'config/environments/development.rb', <<-END
+\n
+config.middleware.use "Rack::Bug",
+  :secret_key => "#{Digest::SHA1.hexdigest(rand.to_s)}"
+END
 
 # ============================================================================
 # Plugins
