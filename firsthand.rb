@@ -97,6 +97,8 @@ run 'mv tmp/test.rb.bak config/environments/test.rb'
 
 generate :cucumber, "--webrat --rspec"
 
+generate :email_spec
+
 # ============================================================================
 # Git Setup
 # ============================================================================
@@ -133,4 +135,33 @@ git :add => "."
 git :commit => "-a -m 'Initial project commit'"
 
 # Success!
-puts "SUCCESS!"
+puts <<-END
+============================================================================
+SUCCESS!
+
+To configure email_spec add the following:
+
+Cucumber
+
+# features/support/env.rb
+# Make sure this require is after you require cucumber/rails/world.
+require 'email_spec/cucumber'
+
+RSpec
+
+# spec/spec_helper.rb
+Spec::Runner.configure do |config|
+  config.include(EmailSpec::Helpers)
+  config.include(EmailSpec::Matchers)
+end
+
+To configure Spork:
+
+To use spork run (and then edit spec/spec_helper.rb):
+$ spork --bootstrap
+
+# spec/spec.opts
+--drb
+
+============================================================================
+END
