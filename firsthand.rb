@@ -66,7 +66,6 @@ run 'compass init rails --using blueprint/semantic --css-dir=public/stylesheets/
 require 'digest'
 
 append_file 'config/environments/development.rb', <<-END
-\n
 config.middleware.use "Rack::Bug",
   :secret_key => "#{Digest::SHA1.hexdigest(rand.to_s)}"
 END
@@ -160,6 +159,8 @@ require 'email_spec/cucumber'
 RSpec
 
 # spec/spec_helper.rb
+require "email_spec"
+
 Spec::Runner.configure do |config|
   config.include(EmailSpec::Helpers)
   config.include(EmailSpec::Matchers)
