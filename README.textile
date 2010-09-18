@@ -3,6 +3,7 @@ h1. Template Description
 * Runs with mysql because it uses the query_reviewer plugin.
 * Assumes a Heroku deployment platform
 * Uses Bundler for Gem management
+* Uses RSpec and Cucumber for Testing
 
 h1. Setup/Installation
 
