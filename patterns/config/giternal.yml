@@ -1,6 +1,3 @@
-asset_packager:
-  repo: git://github.com/sbecker/asset_packager.git
-  path: vendor/plugins
 custom_err_msg:
   repo: git://github.com/pivotal/custom-err-msg.git
   path: vendor/plugins
