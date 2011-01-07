@@ -2,9 +2,9 @@
 %html{:xmlns =>"http://www.w3.org/1999/xhtml", "xml:lang" => I18n.locale, :lang => I18n.locale}
   %head
     
-    = display_meta_tags :site => MyApp.project_name, :reverse => true
+    = display_meta_tags :site => Rails.configuration.title, :reverse => true
     
-    %meta{:name => "app_version", :content => MyApp.version}   
+    %meta{:name => "app_version", :content => Rails.configuration.version}   
     %meta{:content => "text/html; charset=utf-8", "http-equiv" => "Content-Type"}
 
     = javascript_include_tag :all, :cache => true
@@ -14,9 +14,9 @@
     /[if lt IE 8]
       = stylesheet_link_tag 'compiled/ie', :media => :all
 
-  %body{:id => "site-id", :class => body_class}
+  %body{:id => "site-id", :class => "bp #{body_class}"}
     = render :partial => 'shared/flashes'
     = yield
     %p 
       Version:
-      = MyApp.version
+      = Rails.configuration.version

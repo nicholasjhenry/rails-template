@@ -1,6 +1,6 @@
-template_path = File.expand_path(File.dirname(template), File.join(root,'..'))
+template_path = File.expand_path(File.dirname(__FILE__))
 require File.join(template_path, 'extensions', 'template_runner')
-
+ 
 init_template_path(template_path)
 
 # ============================================================================
@@ -8,8 +8,6 @@ init_template_path(template_path)
 # ============================================================================
 
 load_pattern 'Gemfile'
-load_pattern 'config/preinitializer.rb'
-load_pattern 'config/boot.rb'
 
 run "bundle install --without production"
 
@@ -24,35 +22,40 @@ load_pattern 'app/helpers/application_helper.rb'
 load_pattern 'app/views/shared/_flashes.html.haml'
  
 load_pattern 'app/views/layouts/application.html.haml'
+run 'rm -f app/views/layouts/application.html.erb'
 
-initializer 'time_formats.rb', <<-END
-# Example time formats
-{ :short_date => "%x", :long_date => "%a, %b %d, %Y" }.each do |k, v|
-  ActiveSupport::CoreExtensions::Time::Conversions::DATE_FORMATS.update(k => v)
-end
-END
-
-initializer 'exception_notifier.rb', <<-END
-ExceptionNotification::Notifier.exception_recipients = %w(webmaster@firsthand.ca)
-END
+generate 'jquery:install', '--ui'
 
 initializer 'date_formats.rb', <<-END
-ActiveSupport::CoreExtensions::Date::Conversions::DATE_FORMATS[:friendly] = "%B %Y"
+# Example time formats
+{ :short_date => "%x", :long_date => "%a, %b %d, %Y" }.each do |k, v|
+  Date::DATE_FORMATS.update(k => v)
+end
 END
 
 initializer 'form_errors.rb', <<-END
 ActionView::Base.field_error_proc = Proc.new do |html_tag, instance_tag|
   klass = html_tag.match(/<label.*>/) ? "labelWithErrors" : "fieldWithErrors"
-  %Q{<span class="\#{klass}">\#{html_tag}</span>}
+  %Q{<span class="\#{klass}">\#{html_tag}</span>}.html_safe
 end
 END
 
+# ============================================================================
+# Choices (application settings)
+# ============================================================================
+
+insert_into_file 'config/application.rb', :before => "end\nend"do
+  <<-RUBY
+    # Add settings file for Choices gem
+    config.from_file "settings.yml" 
+  RUBY
+end
+
+load_pattern 'config/settings.yml'
 
 # ============================================================================
 # Configuration
 # ============================================================================
-
-load_pattern 'lib/my_app.rb'
 
 load_pattern 'config/application.yml'
 
@@ -61,32 +64,6 @@ run "cp config/database.yml config/database.yml.example"
 # Compass
 run 'compass init rails --using blueprint/semantic --css-dir=public/stylesheets/compiled --sass-dir=app/stylesheets --syntax sass'
 
-# RackBug
-
-require 'digest'
-
-append_file 'config/environments/development.rb', <<-END
-config.middleware.use "Rack::Bug",
-  :secret_key => "#{Digest::SHA1.hexdigest(rand.to_s)}"
-END
-
-# ============================================================================
-# Plugins
-#
-# Use Gitneral to manage external dependencies
-# ============================================================================
-
-load_pattern 'config/giternal.yml'
-
-run 'giternal update'
-
-# Use specific branches, tags
-inside('vendor/plugins/exception_notification') do
-  run "git checkout 2-3-stable"
-end
-
-run 'giternal freeze'
-
 # ============================================================================
 # Testing
 # ============================================================================
@@ -94,21 +71,30 @@ run 'giternal freeze'
 # Don't need ./test since we are using RSpec
 #
 run 'rm -rf test'
+generate 'rspec:install'
+generate 'cucumber:install', '--capybara --rspec --spork'
+generate 'email_spec:steps'
 
-# Rspec will configure the test environment with Gems config, but this is
-# handled in bundler so let's backup the file...
-#
-run 'cp config/environments/test.rb tmp/test.rb.bak'
+# configure email_sepc for Cucumber
 
-generate :rspec
+insert_into_file "features/support/env.rb", :after => "require 'cucumber/rails/world'\n" do
+  <<-RUBY
+  require 'email_spec'
+  require 'email_spec/cucumber'
+  RUBY
+end
 
-# ...and copy it back once rspec has done it's thing
-#
-run 'mv tmp/test.rb.bak config/environments/test.rb'
+# configure email_spec for Rspec
 
-generate :cucumber, "--webrat --rspec"
+insert_into_file "spec/spec_helper.rb", "require 'email_spec'", :after => "require 'rspec/rails'\n"
 
-generate :email_spec
+insert_to_file "spec/spec_helper.rb", :before => "end" do
+  <<-RUBY
+
+  config.include(EmailSpec::Helpers)
+  config.include(EmailSpec::Matchers)
+  RUBY
+end
 
 # ============================================================================
 # Documentation
@@ -130,6 +116,7 @@ file '.gitignore', <<-END
 .bundle
 .bundle-cache
 .DS_Store
+.livereload.yml
 .sass-cache/
 .xrefresh-server.yml
 config/database.yml
@@ -157,24 +144,6 @@ git :commit => "-a -m 'Initial project commit'"
 puts <<-END
 ============================================================================
 SUCCESS!
-
-To configure email_spec add the following:
-
-Cucumber
-
-# features/support/env.rb
-# Make sure this require is after you require cucumber/rails/world.
-require 'email_spec/cucumber'
-
-RSpec
-
-# spec/spec_helper.rb
-require "email_spec"
-
-Spec::Runner.configure do |config|
-  config.include(EmailSpec::Helpers)
-  config.include(EmailSpec::Matchers)
-end
 
 To configure Spork:
 

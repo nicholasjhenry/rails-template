@@ -1,13 +1,13 @@
+Note: This is the first cut converting the Rail 2.x template to Rails 3.x. There are some template API changes that makes this implementation look a "little ugly". These will be fixed.
+
 h1. Template Description
 
-* Runs with mysql because it uses the query_reviewer plugin.
 * Assumes a Heroku deployment platform
-* Uses Bundler for Gem management
 * Uses RSpec and Cucumber for Testing
 
 h1. Setup/Installation
 
-$ rails myproject -d mysql -m firsthand.rb
+$ rails myproject -m /path/to/firsthand.rb
 
 h1. Next Steps
 

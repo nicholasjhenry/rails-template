@@ -21,6 +21,10 @@ h1. Testing
 
 TODO: describe how to run the test scripts
 
+Note: As spork is installed as a Gem from a Git repos, you will need to execute it with the bundle exec command, e.g.:
+
+bundle exec sport [cucumber]
+
 h1. References
 
 TODO: add any references used in the project such as documentation for third-party API's
