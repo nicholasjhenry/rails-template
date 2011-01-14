@@ -3,13 +3,12 @@ require File.join(template_path, 'extensions', 'template_runner')
  
 init_template_path(template_path)
 
-# ============================================================================
-# GEMS
-# ============================================================================
+required_recipes = %w(autotest choices haml compass custom_error_message meta_tags will_paginate faker factory_girl rspec spork cucumber email_spec jquery)
+required_recipes.each {|required_recipe| apply recipe(required_recipe)}
 
-load_pattern 'Gemfile'
+run 'bundle install'
 
-run "bundle install --without production"
+execute_post_bundler_strategies
 
 # ============================================================================
 # Application
@@ -22,9 +21,7 @@ load_pattern 'app/helpers/application_helper.rb'
 load_pattern 'app/views/shared/_flashes.html.haml'
  
 load_pattern 'app/views/layouts/application.html.haml'
-run 'rm -f app/views/layouts/application.html.erb'
-
-generate 'jquery:install', '--ui'
+remove_file 'app/views/layouts/application.html.erb'
 
 initializer 'date_formats.rb', <<-END
 # Example time formats
@@ -41,60 +38,10 @@ end
 END
 
 # ============================================================================
-# Choices (application settings)
-# ============================================================================
-
-insert_into_file 'config/application.rb', :before => "end\nend"do
-  <<-RUBY
-    # Add settings file for Choices gem
-    config.from_file "settings.yml" 
-  RUBY
-end
-
-load_pattern 'config/settings.yml'
-
-# ============================================================================
 # Configuration
 # ============================================================================
 
-load_pattern 'config/application.yml'
-
 run "cp config/database.yml config/database.yml.example"
-
-# Compass
-run 'compass init rails --using blueprint/semantic --css-dir=public/stylesheets/compiled --sass-dir=app/stylesheets --syntax sass'
-
-# ============================================================================
-# Testing
-# ============================================================================
-
-# Don't need ./test since we are using RSpec
-#
-run 'rm -rf test'
-generate 'rspec:install'
-generate 'cucumber:install', '--capybara --rspec --spork'
-generate 'email_spec:steps'
-
-# configure email_sepc for Cucumber
-
-insert_into_file "features/support/env.rb", :after => "require 'cucumber/rails/world'\n" do
-  <<-RUBY
-  require 'email_spec'
-  require 'email_spec/cucumber'
-  RUBY
-end
-
-# configure email_spec for Rspec
-
-insert_into_file "spec/spec_helper.rb", "require 'email_spec'", :after => "require 'rspec/rails'\n"
-
-insert_to_file "spec/spec_helper.rb", :before => "end" do
-  <<-RUBY
-
-  config.include(EmailSpec::Helpers)
-  config.include(EmailSpec::Matchers)
-  RUBY
-end
 
 # ============================================================================
 # Documentation
@@ -108,7 +55,7 @@ load_pattern 'README.textile'
 # Git Setup
 # ============================================================================
                          
-run "rm public/index.html"
+remove_file "public/index.html"
 run "touch public/stylesheets/screen.css"
 run "touch public/stylesheets/print.css" 
 
@@ -130,6 +77,7 @@ mkmf.log
 public/assets
 public/system
 public/uploads
+public/stylesheets/compiled
 tmp/**/*
 tmp/metric_fu/*
 tmp/sent_mails/*
@@ -150,7 +98,7 @@ To configure Spork:
 To use spork run (and then edit spec/spec_helper.rb):
 $ spork --bootstrap
 
-# spec/spec.opts
+# .rspec 
 --drb
 
 ============================================================================

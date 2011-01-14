@@ -2,8 +2,19 @@ module Rails
   module Generators
     module Actions
 
+      attr_accessor :post_bundler_strategies
+
       def init_template_path(template_path)
         @firsthand_template_path = template_path
+        @post_bundler_strategies = []
+      end
+
+      def execute_post_bundler_strategies
+        post_bundler_strategies.each {|strategy| strategy.call }
+      end
+
+      def recipe(name)
+        File.join @firsthand_template_path, 'recipes', "#{name}.rb"
       end
 
       def load_pattern(pathname)
@@ -11,23 +22,6 @@ module Rails
         file(pathname, IO.read(absolute_pathname))
       end
       
-      def append_file(file, string)
-        env = IO.read(file)
-        env << "\n"
-        env << string
-        File.open(file, 'w') do |env_out|
-          env_out.write(env)
-        end
-      end
-      
-      def prepend_file(file, string)
-        env = IO.read(file)
-        string << "\n"
-        string << env
-        File.open(file, 'w') do |env_out|
-          env_out.write(string)
-        end
-      end
     end
   end
 end

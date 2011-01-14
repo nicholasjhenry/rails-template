@@ -1,9 +1,6 @@
-Note: This is the first cut converting the Rail 2.x template to Rails 3.x. There are some template API changes that makes this implementation look a "little ugly". These will be fixed.
-
 h1. Template Description
 
-* Assumes a Heroku deployment platform
-* Uses RSpec and Cucumber for Testing
+Uses RSpec and Cucumber for testing
 
 h1. Setup/Installation
 
@@ -25,3 +22,4 @@ http://localhost:3000/posts
 
 Some concepts borrowed from:
 http://github.com/ffmike/BigOldRailsTemplate
+https://github.com/kfaustino/rails-templater
