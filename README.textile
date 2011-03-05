@@ -4,7 +4,7 @@ Uses RSpec and Cucumber for testing
 
 h1. Setup/Installation
 
-$ rails myproject -m /path/to/firsthand.rb
+$ rails new myproject -m /path/to/firsthand.rb --skip-test-unit
 
 h1. Next Steps
 
