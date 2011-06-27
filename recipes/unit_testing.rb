@@ -12,6 +12,14 @@ post_bundler_strategies << lambda do
   generate 'rspec:install'
 end
 
+gem 'fuubar'
+
+success_notice << <<-END
+Fuubar: add the following to .rspec
+
+--format Fuubar
+END
+
 gem 'boure', '~>1.0', :group => :test
 
 success_notice << <<-END
