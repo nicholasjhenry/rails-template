@@ -12,14 +12,15 @@ post_bundler_strategies << lambda do
   generate 'rspec:install'
 end
 
-gem 'boure', '~>1.0'
+gem 'boure', '~>1.0', :group => :test
+
 success_notice << <<-END
  Bourne: add the following to spec/spec_helper
 
  config.mock_with :mocha
 END
 
-gem 'cover_me', '>= 1.0.0.rc5'
+gem 'cover_me', '>= 1.0.0.rc5', :group => :test
 
 gem 'email_spec', '~>1.1', :group => [:test, :cucumber]
 
