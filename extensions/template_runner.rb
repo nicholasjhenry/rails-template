@@ -2,11 +2,12 @@ module Rails
   module Generators
     module Actions
 
-      attr_accessor :post_bundler_strategies
+      attr_accessor :post_bundler_strategies, :success_notice
 
       def init_template_path(template_path)
         @firsthand_template_path = template_path
         @post_bundler_strategies = []
+        @success_notice = []
       end
 
       def execute_post_bundler_strategies
@@ -21,7 +22,6 @@ module Rails
         absolute_pathname = File.join(@firsthand_template_path, 'patterns', pathname)
         file(pathname, IO.read(absolute_pathname))
       end
-      
     end
   end
 end

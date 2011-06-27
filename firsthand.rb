@@ -92,14 +92,10 @@ git :commit => "-a -m 'Initial project commit'"
 puts <<-END
 ============================================================================
 SUCCESS!
+END
 
-To configure Spork:
+puts success_notice
 
-To use spork run (and then edit spec/spec_helper.rb):
-$ spork --bootstrap
-
-# .rspec 
---drb
-
+puts <<-END
 ============================================================================
 END
