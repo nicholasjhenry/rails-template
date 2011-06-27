@@ -5,8 +5,8 @@ init_template_path(template_path)
 
 recipe_name = ENV['RECIPE']
 
+# Order is important due to some dependencies
 recipes = %w(
-  acceptance_testing 
   development
   error_message 
   javascript
@@ -17,8 +17,9 @@ recipes = %w(
   preferences 
   stylesheet 
   template
-  testing_drb 
+  acceptance_testing 
   unit_testing
+  testing_drb 
 )
 
 if recipe_name
