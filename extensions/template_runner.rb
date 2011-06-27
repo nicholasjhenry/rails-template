@@ -29,7 +29,10 @@ module Rails
         SUCCESS!
         END
 
-        puts success_notice
+        success_notice.each do |notice|
+          puts notice
+          puts ""
+        end
 
         puts <<-END
         ============================================================================
