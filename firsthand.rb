@@ -9,6 +9,7 @@ recipes = %w(
   acceptance_testing 
   error_message 
   javascript
+  logging
   meta_tags 
   metrics
   pagination 
