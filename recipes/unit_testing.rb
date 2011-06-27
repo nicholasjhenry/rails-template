@@ -23,9 +23,9 @@ END
 gem 'boure', '~>1.0', :group => :test
 
 success_notice << <<-END
- Bourne: add the following to spec/spec_helper
+Bourne: add the following to spec/spec_helper
 
- config.mock_with :mocha
+config.mock_with :mocha
 END
 
 gem 'cover_me', '>= 1.0.0.rc5', :group => :test
