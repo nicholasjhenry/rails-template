@@ -7,6 +7,7 @@ recipe_name = ENV['RECIPE']
 
 recipes = %w(
   acceptance_testing 
+  development
   error_message 
   javascript
   logging
