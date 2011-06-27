@@ -5,25 +5,26 @@ init_template_path(template_path)
 
 recipe_name = ENV['RECIPE']
 
+recipes = %w(autotest 
+             choices 
+             haml 
+             compass 
+             custom_error_message 
+             meta_tags 
+             will_paginate 
+             faker 
+             factory_girl 
+             rspec 
+             spork 
+             cucumber 
+             email_spec 
+             jquery)
+
 if recipe_name
+  raise %(Recipe "#{recipe_name}" does not exist.) if !recipes.include?(recipe_name)
   apply recipe(recipe_name)
 else
-  required_recipes = %w(autotest 
-                        choices 
-                        haml 
-                        compass 
-                        custom_error_message 
-                        meta_tags 
-                        will_paginate 
-                        faker 
-                        factory_girl 
-                        rspec 
-                        spork 
-                        cucumber 
-                        email_spec 
-                        jquery)
-
-  required_recipes.each {|required_recipe| apply recipe(required_recipe)}
+  recipes.each {|required_recipe| apply recipe(required_recipe)}
 end
 
 run 'bundle install'
