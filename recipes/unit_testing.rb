@@ -20,7 +20,7 @@ Fuubar: add the following to .rspec
 --format Fuubar
 END
 
-gem 'boure', '~>1.0', :group => :test
+gem 'bourne', '~>1.0', :group => :test
 
 success_notice << <<-END
 Bourne: add the following to spec/spec_helper
