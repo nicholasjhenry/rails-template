@@ -1,3 +1,17 @@
+gem 'autotest-rails'
+
+gem 'faker'
+
+gem 'shoulda', '~>2.11', :group => :test
+
+gem 'factory_girl_rails', :group => [:test, :cucumber]
+
+gem 'rspec-rails', '~>2.4', :group => [:test, :development, :cucumber]
+
+post_bundler_strategies << lambda do
+  generate 'rspec:install'
+end
+
 gem 'email_spec', '~>1.1', :group => [:test, :cucumber]
 
 post_bundler_strategies << lambda do

@@ -5,20 +5,18 @@ init_template_path(template_path)
 
 recipe_name = ENV['RECIPE']
 
-recipes = %w(autotest 
-             choices 
-             haml 
-             compass 
-             custom_error_message 
-             meta_tags 
-             will_paginate 
-             faker 
-             factory_girl 
-             rspec 
-             spork 
-             cucumber 
-             email_spec 
-             jquery)
+recipes = %w(
+  acceptance_testing 
+  error_message 
+  javascript
+  meta_tags 
+  pagination 
+  preferences 
+  stylesheet 
+  template
+  testing_drb 
+  unit_testing
+)
 
 if recipe_name
   raise %(Recipe "#{recipe_name}" does not exist.) if !recipes.include?(recipe_name)
