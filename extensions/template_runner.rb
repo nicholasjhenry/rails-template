@@ -22,6 +22,19 @@ module Rails
         absolute_pathname = File.join(@firsthand_template_path, 'patterns', pathname)
         file(pathname, IO.read(absolute_pathname))
       end
+
+      def finalize
+        puts <<-END
+        ============================================================================
+        SUCCESS!
+        END
+
+        puts success_notice
+
+        puts <<-END
+        ============================================================================
+        END
+      end
     end
   end
 end

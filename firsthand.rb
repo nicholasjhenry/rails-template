@@ -3,12 +3,37 @@ require File.join(template_path, 'extensions', 'template_runner')
  
 init_template_path(template_path)
 
-required_recipes = %w(autotest choices haml compass custom_error_message meta_tags will_paginate faker factory_girl rspec spork cucumber email_spec jquery)
-required_recipes.each {|required_recipe| apply recipe(required_recipe)}
+recipe_name = ENV['RECIPE']
+
+if recipe_name
+  apply recipe(recipe_name)
+else
+  required_recipes = %w(autotest 
+                        choices 
+                        haml 
+                        compass 
+                        custom_error_message 
+                        meta_tags 
+                        will_paginate 
+                        faker 
+                        factory_girl 
+                        rspec 
+                        spork 
+                        cucumber 
+                        email_spec 
+                        jquery)
+
+  required_recipes.each {|required_recipe| apply recipe(required_recipe)}
+end
 
 run 'bundle install'
 
 execute_post_bundler_strategies
+
+if recipe_name
+  finalize
+  return
+end
 
 # ============================================================================
 # Application
@@ -89,13 +114,4 @@ git :add => "."
 git :commit => "-a -m 'Initial project commit'"
 
 # Success!
-puts <<-END
-============================================================================
-SUCCESS!
-END
-
-puts success_notice
-
-puts <<-END
-============================================================================
-END
+finalize

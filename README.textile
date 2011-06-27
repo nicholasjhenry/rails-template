@@ -20,6 +20,14 @@ Visit:
 
 http://localhost:3000/posts
 
+h1. Running a Single Recipe
+
+You can also run a single reciple in an existing application by passing in the RECIPE name:
+
+rake rails:template LOCATION=/path/to/firsthand.rb RECIPE=compass
+
+In this case, this will only run the compass recipe. You will be required to commit changes to source control yourself after the recipe has been run. What recipes can be run? See <tt>./recipes</tt>.
+
 Some concepts borrowed from:
 http://github.com/ffmike/BigOldRailsTemplate
 https://github.com/kfaustino/rails-templater
