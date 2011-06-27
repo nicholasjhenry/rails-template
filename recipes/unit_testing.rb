@@ -2,6 +2,8 @@ gem 'autotest-rails'
 
 gem 'faker'
 
+gem 'boure', '~>1.0'
+
 gem 'shoulda', '~>2.11', :group => :test
 
 gem 'factory_girl_rails', :group => [:test, :cucumber]
