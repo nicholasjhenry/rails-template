@@ -12,7 +12,7 @@ Then give it a whirl:
 
 $ cd myproject
 $ rake db:create
-$ script/generate scaffold post title:string body:text
+$ rails g scaffold post title:string body:text
 $ rake db:migrate
 $ script/server
 
