@@ -10,6 +10,7 @@ recipes = %w(
   error_message 
   javascript
   meta_tags 
+  metrics
   pagination 
   preferences 
   stylesheet 
