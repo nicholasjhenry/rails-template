@@ -1,6 +1,7 @@
 h1. Template Description
 
-Uses RSpec and Cucumber for testing
+* RSpec for unit testing and Cucumber for acceptance testing.
+* Compass and Haml for templating.
 
 h1. Setup/Installation
 
@@ -19,6 +20,8 @@ $ script/server
 Visit:
 
 http://localhost:3000/posts
+
+You can also run the generated spec using <tt>rake spec</tt>.
 
 h1. Running a Single Recipe
 
