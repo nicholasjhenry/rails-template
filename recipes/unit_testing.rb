@@ -19,6 +19,7 @@ success_notice << <<-END
  config.mock_with :mocha
 END
 
+gem 'cover_me', '>= 1.0.0.rc5'
 
 gem 'email_spec', '~>1.1', :group => [:test, :cucumber]
 
