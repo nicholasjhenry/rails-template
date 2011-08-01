@@ -23,8 +23,11 @@ recipes = %w(
   testing_drb 
 )
 
+# Recipes that we don't want to install in every installation
+optional_recipes = %w(optimization)
+
 if recipe_name
-  raise %(Recipe "#{recipe_name}" does not exist.) if !recipes.include?(recipe_name)
+  raise %(Recipe "#{recipe_name}" does not exist.) if !(recipes + optional_recipes).include?(recipe_name)
   apply recipe(recipe_name)
 else
   recipes.each {|required_recipe| apply recipe(required_recipe)}
