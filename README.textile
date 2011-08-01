@@ -25,11 +25,13 @@ You can also run the generated spec using <tt>rake spec</tt>.
 
 h1. Running a Single Recipe
 
-You can also run a single reciple in an existing application by passing in the RECIPE name:
+You can also run a single or multiple recipes in an existing application by passing in the names:
 
-rake rails:template LOCATION=/path/to/firsthand.rb RECIPE=compass
+rake rails:template LOCATION=/path/to/firsthand.rb RECIPES=stylesheet,template
 
-In this case, this will only run the compass recipe. You will be required to commit changes to source control yourself after the recipe has been run. What recipes can be run? See <tt>./recipes</tt>.
+In this case, this will only run the stylesheet and template recipes. You will be required to commit changes to source control yourself after the recipe has been run. What recipes can be run? See <tt>./recipes</tt>.
+
+h1. Credits
 
 Some concepts borrowed from:
 http://github.com/ffmike/BigOldRailsTemplate
