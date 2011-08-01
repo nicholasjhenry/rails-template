@@ -3,7 +3,7 @@ require File.join(template_path, 'extensions', 'template_runner')
  
 init_template_path(template_path)
 
-recipe_name = ENV['RECIPE']
+recipe_names = ENV['RECIPES']
 
 # Order is important due to some dependencies
 recipes = %w(
@@ -18,6 +18,7 @@ recipes = %w(
   preferences 
   stylesheet 
   template
+  stylesheet_layout
   acceptance_testing 
   unit_testing
   testing_drb 
@@ -26,9 +27,11 @@ recipes = %w(
 # Recipes that we don't want to install in every installation
 optional_recipes = %w(optimization)
 
-if recipe_name
-  raise %(Recipe "#{recipe_name}" does not exist.) if !(recipes + optional_recipes).include?(recipe_name)
-  apply recipe(recipe_name)
+if recipe_names
+  recipe_names.split(",").each do |recipe_name|
+    raise %(Recipe "#{recipe_name}" does not exist.) if !(recipes + optional_recipes).include?(recipe_name)
+    apply recipe(recipe_name)
+  end
 else
   recipes.each {|required_recipe| apply recipe(required_recipe)}
 end
@@ -37,7 +40,7 @@ run 'bundle install'
 
 execute_post_bundler_strategies
 
-if recipe_name
+if recipe_names
   finalize
   return
 end

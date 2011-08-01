@@ -19,8 +19,8 @@ module Rails
       end
 
       def load_pattern(pathname)
-        absolute_pathname = File.join(@firsthand_template_path, 'patterns', pathname)
-        file(pathname, IO.read(absolute_pathname))
+        File.directory?(File.join(pattern_path, pathname)) ? write_directory_pattern(pathname) :
+                                    write_file_pattern(pathname)
       end
 
       def finalize
@@ -37,6 +37,25 @@ module Rails
         puts <<-END
         ============================================================================
         END
+      end
+
+      private
+
+      def write_directory_pattern(directory_pathname)
+        pathnames = Dir.glob(File.join(pattern_path, directory_pathname, '**', '*'))
+        pathnames.each do |source_pathname|
+          destination_pathname = source_pathname.sub(pattern_path + '/', '')
+          file(destination_pathname, IO.read(source_pathname)) unless File.directory?(source_pathname)
+        end
+      end
+
+      def write_file_pattern(destination_pathname)
+        source_pathname = File.join(pattern_path, destination_pathname)
+        file(destination_pathname, IO.read(source_pathname))
+      end
+      
+      def pattern_path
+        File.join(@firsthand_template_path, 'patterns')
       end
     end
   end
