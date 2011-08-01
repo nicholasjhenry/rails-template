@@ -9,6 +9,7 @@ recipe_name = ENV['RECIPE']
 recipes = %w(
   development
   error_message 
+  heroku
   javascript
   logging
   meta_tags 
