@@ -2,9 +2,6 @@
 %html{:xmlns =>"http://www.w3.org/1999/xhtml", "xml:lang" => I18n.locale, :lang => I18n.locale}
   %head
     
-    = display_meta_tags :site => Rails.configuration.title, :reverse => true
-    
-    %meta{:name => "app_version", :content => Rails.configuration.version}   
     %meta{:content => "text/html; charset=utf-8", "http-equiv" => "Content-Type"}
 
     = javascript_include_tag :all, :cache => true
@@ -17,6 +14,3 @@
   %body{:id => "site-id", :class => "bp #{body_class}"}
     = render :partial => 'shared/flashes'
     = yield
-    %p 
-      Version:
-      = Rails.configuration.version
