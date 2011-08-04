@@ -51,13 +51,6 @@ end
 
 load_pattern 'app/controllers/application_controller.rb'
 
-load_pattern 'app/helpers/application_helper.rb'
- 
-load_pattern 'app/views/shared/_flashes.html.haml'
- 
-load_pattern 'app/views/layouts/application.html.haml'
-remove_file 'app/views/layouts/application.html.erb'
-
 initializer 'date_formats.rb', <<-END
 # Example time formats
 { :short_date => "%x", :long_date => "%a, %b %d, %Y" }.each do |k, v|
@@ -91,8 +84,6 @@ load_pattern 'README.textile'
 # ============================================================================
                          
 remove_file "public/index.html"
-run "touch public/stylesheets/screen.css"
-run "touch public/stylesheets/print.css" 
 
 file '.gitignore', <<-END
 .bundle
