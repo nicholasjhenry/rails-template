@@ -5,7 +5,7 @@ post_bundler_strategies << lambda do
 end
 
 message = <<-END
-If deploying to Heroku, change your css_dir to tmp/public/stylesheets/compiled in config/compass.rb.
+If deploying to Heroku, change your css_dir to tmp/stylesheets/compiled in config/compass.rb.
 END
 
 success_notice << message
