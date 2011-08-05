@@ -1,4 +1,4 @@
-gem 'haml-rails', '~>0.3'
+gem 'haml-rails'
 
 load_pattern 'app/helpers/application_helper.rb'
 load_pattern 'app/views/shared/_flashes.html.haml'
