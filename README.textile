@@ -1,7 +1,12 @@
 h1. Template Description
 
+* Adds useful development Gems
 * RSpec for unit testing and Cucumber for acceptance testing.
 * Compass and Haml for templating.
+* Adds a file layout for stylesheets
+* Add a nice template for README with placeholders
+
+See the recipes directory for more details.
 
 h1. Setup/Installation
 
