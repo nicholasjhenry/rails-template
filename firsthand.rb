@@ -16,6 +16,7 @@ recipes = %w(
   metrics
   pagination 
   preferences 
+  readme
   stylesheet 
   template
   stylesheet_layout
@@ -70,14 +71,6 @@ END
 # ============================================================================
 
 run "cp config/database.yml config/database.yml.example"
-
-# ============================================================================
-# Documentation
-# ============================================================================
-
-run 'rm -rf README doc'
-
-load_pattern 'README.textile'
 
 # ============================================================================
 # Git Setup

@@ -12,7 +12,7 @@ TODO: describe how to get the project running on a local machine:
   cp config/database.yml.example config/database.yml
   (sudo) gem install bundler
   (sudo) bundle install --without test cucumber production # if you are testing then just --without production
-  rake db:migrate
+  heroku db:pull --app myproject
 </pre>
 
 TODO: how to add demo data?
