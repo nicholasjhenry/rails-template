@@ -6,7 +6,7 @@ gem 'shoulda', '~>2.11', :group => :test
 
 gem 'factory_girl_rails', :group => [:test, :cucumber]
 
-gem 'rspec-rails', '~>2.4', :group => [:test, :development, :cucumber]
+gem 'rspec-rails', '~>2.5', :group => [:test, :development, :cucumber]
 
 post_bundler_strategies << lambda do
   generate 'rspec:install'
@@ -28,9 +28,9 @@ Bourne: add the following to spec/spec_helper
 config.mock_with :mocha
 END
 
-gem 'cover_me', '>= 1.0.0.rc5', :group => :test
+gem 'cover_me', '~>1.1.2', :group => :test
 
-gem 'email_spec', '~>1.1', :group => [:test, :cucumber]
+gem 'email_spec', '~>1.2', :group => [:test, :cucumber]
 
 post_bundler_strategies << lambda do
   generate 'email_spec:steps'
