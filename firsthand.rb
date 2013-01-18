@@ -10,7 +10,6 @@ recipes = %w(
   development
   error_message
   meta_tags
-  preferences
   readme
   stylesheet
   template
