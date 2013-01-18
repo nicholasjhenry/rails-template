@@ -9,7 +9,6 @@ recipe_names = ENV['RECIPES']
 recipes = %w(
   development
   error_message
-  logging
   meta_tags
   metrics
   pagination
