@@ -1,9 +1,9 @@
-gem 'cucumber-rails', '0.4.1', :group => [:test, :development]
-gem "capybara", '~>0.4', :group => [:test, :development]
+gem 'cucumber-rails', :group => :test
+gem 'capybara', :group => :test
 
-gem "database_cleaner", '~>0.6', :group => [:test, :development]
-gem "launchy", :group => [:test, :development]
+gem 'database_cleaner', :group => :test
+gem 'launchy', :group => :test
 
 post_bundler_strategies << lambda do
-  generate 'cucumber:install', '--capybara --rspec --spork'
+  generate 'cucumber:install'
 end
