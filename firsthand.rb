@@ -11,9 +11,7 @@ recipes = %w(
   error_message
   meta_tags
   readme
-  stylesheet
   template
-  stylesheet_layout
   acceptance_testing
   unit_testing
 )
