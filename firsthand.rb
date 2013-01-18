@@ -1,6 +1,6 @@
 template_path = File.expand_path(File.dirname(__FILE__))
 require File.join(template_path, 'extensions', 'template_runner')
- 
+
 init_template_path(template_path)
 
 recipe_names = ENV['RECIPES']
@@ -8,21 +8,20 @@ recipe_names = ENV['RECIPES']
 # Order is important due to some dependencies
 recipes = %w(
   development
-  error_message 
-  heroku
+  error_message
   javascript
   logging
-  meta_tags 
+  meta_tags
   metrics
-  pagination 
-  preferences 
+  pagination
+  preferences
   readme
-  stylesheet 
+  stylesheet
   template
   stylesheet_layout
-  acceptance_testing 
+  acceptance_testing
   unit_testing
-  testing_drb 
+  testing_drb
 )
 
 # Recipes that we don't want to install in every installation
@@ -75,7 +74,7 @@ run "cp config/database.yml config/database.yml.example"
 # ============================================================================
 # Git Setup
 # ============================================================================
-                         
+
 remove_file "public/index.html"
 
 file '.gitignore', <<-END
