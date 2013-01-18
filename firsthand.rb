@@ -10,7 +10,6 @@ recipes = %w(
   development
   error_message
   meta_tags
-  pagination
   preferences
   readme
   stylesheet
@@ -18,7 +17,6 @@ recipes = %w(
   stylesheet_layout
   acceptance_testing
   unit_testing
-  testing_drb
 )
 
 # Recipes that we don't want to install in every installation
