@@ -1,4 +1,4 @@
-h1. Template Description
+## Template Description
 
 * Adds useful development Gems
 * RSpec for unit testing and Cucumber for acceptance testing.
@@ -8,27 +8,27 @@ h1. Template Description
 
 See the recipes directory for more details.
 
-h1. Setup/Installation
+## Setup/Installation
 
-$ rails new myproject -m /path/to/firsthand.rb
+    $ rails new myproject -m /path/to/firsthand.rb
 
-h1. Next Steps
+## Next Steps
 
 Then give it a whirl:
 
-$ cd myproject
-$ rake db:create
-$ rails g scaffold post title:string body:text
-$ rake db:migrate
-$ script/server
+    $ cd myproject
+    $ rake db:create
+    $ rails g scaffold post title:string body:text
+    $ rake db:migrate
+    $ script/server
 
 Visit:
 
-http://localhost:3000/posts
+    http://localhost:3000/posts
 
 You can also run the generated spec using <tt>rake spec</tt>.
 
-h1. Running a Single Recipe
+## Running a Single Recipe
 
 You can also run a single or multiple recipes in an existing application by passing in the names:
 
