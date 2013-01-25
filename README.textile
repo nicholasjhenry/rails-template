@@ -10,7 +10,7 @@ See the recipes directory for more details.
 
 h1. Setup/Installation
 
-$ rails new myproject -m /path/to/firsthand.rb --skip-test-unit
+$ rails new myproject -m /path/to/firsthand.rb
 
 h1. Next Steps
 
