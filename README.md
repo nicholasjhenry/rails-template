@@ -2,9 +2,8 @@
 
 * Adds useful development Gems
 * RSpec for unit testing and Cucumber for acceptance testing.
-* Compass and Haml for templating.
-* Adds a file layout for stylesheets
-* Add a nice template for README with placeholders
+* Haml for templating.
+* Adds a template for README with placeholders
 
 See the recipes directory for more details.
 
@@ -26,13 +25,16 @@ Visit:
 
     http://localhost:3000/posts
 
-You can also run the generated spec using <tt>rake spec</tt>.
+You can also run the generated spec with:
+
+    $ rake db:test:clone
+    $ bundler exec rspec spec
 
 ## Running a Single Recipe
 
 You can also run a single or multiple recipes in an existing application by passing in the names:
 
-rake rails:template LOCATION=/path/to/firsthand.rb RECIPES=stylesheet,template
+    rake rails:template LOCATION=/path/to/firsthand.rb RECIPES=stylesheet,template
 
 In this case, this will only run the stylesheet and template recipes. You will be required to commit changes to source control yourself after the recipe has been run. What recipes can be run? See <tt>./recipes</tt>.
 
