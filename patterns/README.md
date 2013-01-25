@@ -1,8 +1,10 @@
-h1. Description
+# Application Name
+
+## Description
 
 TODO: add an overview of the project.
 
-h1. Setup
+## Setup
 
 TODO: describe how to get the project running on a local machine:
 
@@ -10,8 +12,8 @@ TODO: describe how to get the project running on a local machine:
   git clone <repo>
   cd project
   cp config/database.yml.example config/database.yml
-  (sudo) gem install bundler
-  (sudo) bundle install --without test cucumber production # if you are testing then just --without production
+  gem install bundler
+  bundle install
   heroku db:pull --app myproject
 </pre>
 
@@ -20,10 +22,6 @@ TODO: how to add demo data?
 h1. Testing
 
 TODO: describe how to run the test scripts
-
-Note: As spork is installed as a Gem from a Git repos, you will need to execute it with the bundle exec command, e.g.:
-
-bundle exec sport [cucumber]
 
 h1. References
 
