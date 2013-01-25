@@ -42,8 +42,6 @@ end
 # Application
 # ============================================================================
 
-load_pattern 'app/controllers/application_controller.rb'
-
 initializer 'date_formats.rb', <<-END
 # Example time formats
 { :short_date => "%x", :long_date => "%a, %b %d, %Y" }.each do |k, v|
