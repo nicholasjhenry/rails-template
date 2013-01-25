@@ -17,7 +17,8 @@ recipes = %w(
 )
 
 # Recipes that we don't want to install in every installation
-optional_recipes = %w(optimization)
+# optional_recipes = %w(optimization)
+optional_recipes = %w()
 
 if recipe_names
   recipe_names.split(",").each do |recipe_name|
@@ -58,42 +59,9 @@ end
 END
 
 # ============================================================================
-# Configuration
-# ============================================================================
-
-run "cp config/database.yml config/database.yml.example"
-
-# ============================================================================
 # Git Setup
 # ============================================================================
 
-remove_file "public/index.html"
-
-file '.gitignore', <<-END
-.bundle
-.bundle-cache
-.DS_Store
-.livereload.yml
-.sass-cache/
-.xrefresh-server.yml
-config/database.yml
-coverage/*
-db/*.sqlite3
-db/*.sqlite3.db
-doc/api
-doc/app
-log/*.log
-mkmf.log
-public/assets
-public/system
-public/uploads
-public/stylesheets/compiled
-tmp/**/*
-tmp/metric_fu/*
-tmp/sent_mails/*
-END
-
-run 'find . \( -type d -empty \) -and \( -not -regex ./\.git.* \) -exec touch {}/.gitignore \;'
 git :init
 git :add => "."
 git :commit => "-a -m 'Initial project commit'"
