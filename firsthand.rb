@@ -8,6 +8,7 @@ recipe_names = ENV['RECIPES']
 # Order is important due to some dependencies
 recipes = %w(
   database
+  thin
   development
   error_message
   meta_tags
